@@ -3,12 +3,21 @@
 List::List()
 {	
 	head = NULL;
+	value = NULL;
 };
 
 List::List (int value)
 {
-	this->value = value;
-	next = NULL;
+	if (head == NULL)
+	{
+		this->value = value;
+		next = NULL;
+	}
+	else
+	{
+		this->value = value;
+		next = NULL;
+	}
 }
 
 List::~List()
@@ -16,9 +25,34 @@ List::~List()
 
 };
 
+bool List::checkForCorrect(int val)
+{
+	if (val >= 0)
+		return true;
+	else
+		return false;
+
+}
+int List::countSize()
+{
+	List *helper = this;
+	int counter = 0;
+	while (helper != NULL)
+	{
+		counter++;
+		helper = helper->next;
+	}
+	return counter;
+}
 
 void List::add(int val)
+
 {
+	if (checkForCorrect(val)==false)
+	{
+		std::cout << "Sorry,Entered the wrong data" << std::endl;
+		return ;
+	}
 	if (!head)
 	{
 		head = new List(val);
